@@ -1,15 +1,17 @@
 package com.zurum.test.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
 @Builder
-public class UserRegisterRequestDto {
+public class UserRegisterRequestDto implements Serializable {
 
     @NotBlank(message = "first name should not be blank")
     private String firstName;
@@ -25,8 +27,8 @@ public class UserRegisterRequestDto {
     private int age;
 
     @Past(message = "Date of birth can't be current or future date")
-    @NotEmpty(message = "Date of birth cannot be empty")
     @JsonAlias(value = "date_of_birth")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dob;
 
     @NotBlank(message = "Phone number cannot be blank")

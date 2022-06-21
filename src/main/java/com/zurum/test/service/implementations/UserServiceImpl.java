@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public GetUserResponseDto getUserById(String userId) {
+        log.info("finding user with #id :: {}", userId);
         return ModelMapperUtils.map(getUserByUserId(userId),GetUserResponseDto.class);
     }
 
@@ -79,7 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private User getUserByUserId(String userId) {
-        return userRepository.getUserByEmail(userId).orElseThrow(
+        return userRepository.findById(userId).orElseThrow(
                 () -> {
                     throw new ResourceNotFoundException("user not found");
                 }

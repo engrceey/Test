@@ -2,9 +2,8 @@ package com.zurum.test.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.springframework.context.annotation.Profile;
+@Profile("test")
 class UserControllerTest {
 
     @BeforeEach
