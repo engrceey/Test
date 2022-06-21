@@ -8,6 +8,7 @@ import com.zurum.test.dto.response.PaginatedResponse;
 import com.zurum.test.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -56,7 +57,7 @@ public class UserController {
         log.info("controller delete - delete user with id :: [{}]",id);
 
         userService.deleteUserById(id);
-        return ResponseEntity.ok(ApiResponse.<Boolean>builder()
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ApiResponse.<Boolean>builder()
                 .isSuccessful(true)
                 .statusMessage("user deleted successfully")
                 .data(true)
@@ -80,7 +81,7 @@ public class UserController {
 
 
 
-    @GetMapping(path="user", produces = "application/json")
+    @GetMapping(path="users", produces = "application/json")
     public ResponseEntity<ApiResponse<PaginatedResponse<GetUserResponseDto>>> getExpanses(
             @RequestParam(defaultValue = "0", required = false) final int start,
             @RequestParam(defaultValue = "10", required = false) final int limit

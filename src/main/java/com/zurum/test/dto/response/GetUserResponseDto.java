@@ -1,12 +1,16 @@
 package com.zurum.test.dto.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Setter
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GetUserResponseDto {
     private String firstName;
     private String lastName;
