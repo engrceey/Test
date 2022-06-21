@@ -6,7 +6,7 @@ import com.zurum.test.dto.request.UserRegisterRequestDto;
 import com.zurum.test.dto.response.GetUserResponseDto;
 import com.zurum.test.dto.response.PaginatedResponse;
 import com.zurum.test.entity.User;
-import com.zurum.test.exceptions.ResourceCreationException;
+import com.zurum.test.exceptions.ResourceConflictException;
 import com.zurum.test.exceptions.ResourceNotFoundException;
 import com.zurum.test.repository.UserRepository;
 import com.zurum.test.service.UserService;
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     public String registerUser(UserRegisterRequestDto userRegisterRequestDto) {
 
         if (doesUserAlreadyExist(userRegisterRequestDto.getEmail())) {
-            throw new ResourceCreationException("User already exist");
+            throw new ResourceConflictException("User already exist");
         }
 
         User newUser = new User();
